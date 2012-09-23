@@ -1,0 +1,13 @@
+#!/bin/sh
+
+flash() {
+    echo 255 | sudo tee  /sys/class/leds/smc\:\:kbd_backlight/brightness >> /dev/null
+    sleep 0.1
+    echo 0 | sudo tee  /sys/class/leds/smc\:\:kbd_backlight/brightness >> /dev/null
+}
+
+for i in 1 2 3; do
+    flash;
+    sleep 0.01
+done;
+

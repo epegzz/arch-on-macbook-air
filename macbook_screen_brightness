@@ -1,0 +1,13 @@
+#!/bin/sh
+
+oldval="$(cat /sys/class/backlight/acpi_video0/brightness)"
+
+if [ "$1" = "down" ]; then
+    echo "$(expr $oldval - 1)" | sudo tee /sys/class/backlight/acpi_video0/brightness
+
+elif [ "$1" = "up" ]; then
+    echo "$(expr $oldval + 1)" | sudo tee /sys/class/backlight/acpi_video0/brightness
+else
+    echo "$oldval"
+fi
+
